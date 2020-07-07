@@ -1,8 +1,12 @@
 package com.sample.browserstack.samplecalculator;
 
+import android.Manifest;
 import android.support.test.filters.SmallTest;
 import android.support.test.rule.ActivityTestRule;
+import android.support.test.rule.GrantPermissionRule;
 import android.support.test.runner.AndroidJUnit4;
+
+import com.squareup.spoon.Spoon;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -14,7 +18,6 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import com.squareup.spoon.Spoon;
 
 /**
  * Espresso tests to ensure that editText box is updated appropriately
@@ -25,6 +28,8 @@ import com.squareup.spoon.Spoon;
 @RunWith(AndroidJUnit4.class)
 public class EnsureInputTests {
 
+    @Rule public GrantPermissionRule mRuntimePermissionRule = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE);
     @Rule
     public ActivityTestRule<MainActivity> activityRule =
             new ActivityTestRule<MainActivity>(MainActivity.class);
